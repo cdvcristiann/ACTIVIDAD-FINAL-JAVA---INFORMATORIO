@@ -9,8 +9,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import javax.validation.Valid;
-import java.util.*;
+import java.util.List;
+import java.time.LocalDate;
+
 
 /**
  * UsuarioController
@@ -65,5 +68,5 @@ public class UsuarioController {
         usuarioRepository.delete(eliminarusuario);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    
+
 }

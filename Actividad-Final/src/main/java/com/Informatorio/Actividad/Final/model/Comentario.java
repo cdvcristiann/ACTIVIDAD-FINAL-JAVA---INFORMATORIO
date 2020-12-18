@@ -2,7 +2,10 @@ package com.Informatorio.Actividad.Final.model;
 import javax.persistence.Id;
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.sql.Date;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.*;
 /**
  * Comentario
  */
@@ -14,10 +17,10 @@ public class Comentario {
     private Long id;
     
     @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "autor", nullable = false)
+    @JoinColumn(name = "autor", nullable = false, referencedColumnName = "id")
     private Usuario usuario;
 
-    private Date fechaCreacion;
+    private LocalDate creationDate = LocalDate.now();
     
     @Size(max = 200)
     private String comentario;
@@ -36,11 +39,11 @@ public class Comentario {
         this.id = id;
     }
 
-    public Date getFechaCreacion() {
-        return fechaCreacion;
+    public LocalDate getCreationDate() {
+        return creationDate;
     }
-    public void setFechaCreacion(Date fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
+    public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
     }
 
     public String getComentario() {

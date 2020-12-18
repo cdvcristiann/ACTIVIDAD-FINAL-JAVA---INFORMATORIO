@@ -2,7 +2,10 @@ package com.Informatorio.Actividad.Final.model;
 import javax.persistence.Id;
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.sql.Date;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.ObjectMapper;
 /**
@@ -21,10 +24,10 @@ public class Post {
 
     private String Contenido;
 
-    private Date fechaCreacion;
+    private LocalDate creationDate = LocalDate.now();
     
     @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "autor", nullable = false)
+    @JoinColumn(name = "autor", nullable = false, referencedColumnName = "id")
     private Usuario usuario;
 
     public Usuario getUsuario() {
@@ -32,9 +35,7 @@ public class Post {
     }
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
-    }
-
-    
+    }   
         
     private boolean publicado;
     public Long getId() {
@@ -62,11 +63,11 @@ public class Post {
         Contenido = contenido;
     }
     
-    public Date getFechaCreacion() {
-        return fechaCreacion;
+    public LocalDate getCreationDate() {
+        return creationDate;
     }
-    public void setFechaCreacion(Date fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
+    public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
     }
     
     public void setPublicado(boolean publicado) {

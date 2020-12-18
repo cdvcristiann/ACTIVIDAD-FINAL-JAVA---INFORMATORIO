@@ -2,10 +2,11 @@ package com.Informatorio.Actividad.Final.model;
 import javax.persistence.Id;
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.*;
+import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 /**
  * Usuario
@@ -25,7 +26,7 @@ public class Usuario {
 
     private String password;
 
-    private Date fechaCreacion;
+    private LocalDate creationDate = LocalDate.now();
 
     private String ciudad;
 
@@ -33,10 +34,10 @@ public class Usuario {
 
     private String pais;
 
-    @OneToMany(mappedBy = "usuario" , cascade=CascadeType.ALL)
+    @OneToMany
     private List<Post> post = new ArrayList<>();
 
-    @OneToMany(mappedBy = "usuario" , cascade=CascadeType.ALL)
+    @OneToMany
     private List<Comentario> comentario = new ArrayList<>();
 
     public Long getId() {
@@ -73,11 +74,12 @@ public class Usuario {
     public void setPassword(String password) {
         this.password = password;
     }
-    public Date getFechaCreacion() {
-        return fechaCreacion;
+    
+    public LocalDate getCreationDate() {
+        return creationDate;
     }
-    public void setFechaCreacion(Date fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
+    public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
     }
 
     public String getCiudad() {

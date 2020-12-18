@@ -1,14 +1,16 @@
 package com.Informatorio.Actividad.Final.controller;
 import com.Informatorio.Actividad.Final.model.Post;
-import com.Informatorio.Actividad.Final.model.Usuario;
 import com.Informatorio.Actividad.Final.repository.PostRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.List;
+import org.springframework.format.annotation.DateTimeFormat;
+import java.time.LocalDate;
 
 /**
  * PostController
@@ -26,7 +28,7 @@ public class PostController {
     }
 
     //crear un post
-    @PostMapping
+    @PostMapping("/api/v1/post")
     public ResponseEntity<?> createPost(@RequestBody Post post) {
         return new ResponseEntity<>(postRepository.save(post), HttpStatus.CREATED);
     }
@@ -47,7 +49,6 @@ public class PostController {
         postRepository.delete(eliminarPublicacion);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 
    
 }
